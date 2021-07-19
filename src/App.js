@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{Component} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// eslint-disable-next-line no-undef
+export default class App extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      value:" "
 
-export default App;
+    };
+    this.textInput=React.createRef();
+  }
+  handleSubmit=e=>{
+    e.preventDefault();
+    this.setState({value:this.textInput.current.value});
+  };
+  render(){
+    return(
+      <React.Fragment>
+        <h2>
+          You Typed: {this.state.value}
+        </h2>
+        <form onSubmit={this.handleSubmit}>
+          Input:<input type="text" ref={this.textInput}/>
+          <input type="submit" value="Submit"/>
+          </form>
+
+
+        
+      </React.Fragment>
+    );
+  }}
